@@ -1,0 +1,35 @@
+<%= link_to 'Back to Home', home_page_path(params[:user_id]), method: :get %>
+
+<div>
+  <h1>New Skill</h1>
+  <%= form_for(@skill,:url => user_admin_add_skills_path,:method => 'post')do |f| %>
+  <table>
+    <tr>
+        <th> Enter Skill Name :- </th>
+        <td><%= f.text_field(:name)%></td>
+    </tr>
+  </table>
+
+  <div>
+    <%= f.submit("Create Skill")%>
+  </div>
+  <%end%>
+</div>
+
+
+<h1>Skills Present on database</h1>
+<table>
+  <tr>
+    <th>#</th>
+    <th> Skill ID </th>
+    <th> Skill Name </th>
+  </tr>
+  <% Skill.all.each do |skill|%>
+  <tr> 
+    <td> </td>     
+    <td><%= skill.id %></td> 
+    <td><%= skill.name %></td>
+    <br>
+  </tr>
+  <%end%>
+</table>

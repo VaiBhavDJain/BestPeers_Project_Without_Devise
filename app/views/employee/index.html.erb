@@ -1,0 +1,5 @@
+<h1> Employee Dashboard </h1>
+
+<%= button_to 'Chat with buddies', user_chatting_index_path(params[:user_id]), method: :get %>
+
+<%=link_to(" Show details ",user_employee_path(params[:user_id],@employee_id),:class=>'action show')%>

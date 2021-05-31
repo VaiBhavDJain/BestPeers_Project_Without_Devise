@@ -1,0 +1,27 @@
+<h1> Add Skill </h1>
+<%= button_to 'Back to Employee Dashboard', user_employee_index_path, method: :get %>
+
+
+<%= form_with model: @employee_skill, url: user_employee_skills_path do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+  
+        <ul>
+          <% @user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div> 
+    <%= form.collection_check_boxes :skill_ids, Skill.all, :id, :name %> 
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+
+  <% end %>
+  

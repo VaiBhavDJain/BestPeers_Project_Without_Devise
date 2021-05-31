@@ -1,0 +1,103 @@
+<h1> Welcome to chat room ==> <%= @user.name%> </h1>
+
+<h2> Chat with your friend  ==> <%= @friend.name %> <== </h2>
+<%= button_to 'Back', user_chatting_index_path(@user.id), method: :get %>
+
+<table style="width:100%">
+  <tr class="header">
+    <th>#</th>
+    <th> Chat ID </th>
+    <th> From </th>
+    <th> To </th>
+    <th> Message </th>
+    <th> Date</th>  
+    <th> Time </th>  
+    <br><br>
+  </tr>
+
+  <% @chats.each do |chat|%>
+  <tr>
+  <td></td>
+    <td><%= chat.id %></td>
+    <td><%= chat.user.name %></td>
+
+    <% friend = User.find(chat.to) %>
+    <td><%= friend.name %></td>
+
+    <td><%= chat.message %></td>
+    <td><%= chat.date %></td>
+    <td><%= chat.time %></td>
+    <br>
+  </tr>
+  <%end%>
+</table>
+
+<div>
+  <h1>Enter Message</h1>
+    <%= form_with( model: [@user.chats.new], local: false, url:  user_chatting_index_path(@user,@friend),:method => 'post')  do |f| %>
+  <table>
+    <tr>
+        <th> Type message here :- </th>
+        <td><%= f.text_field(:message)%></td>
+    </tr>
+  </table>
+  <div>
+    <%= f.submit("==> Send <==")%>
+  </div>
+  <%end%>
+</div>
+
+
+
+
+
+
+<head>
+<style>
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(45deg, #49a09d, #5f2c82);
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+table {
+  width: 800px;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+th,
+td {
+  padding: 15px;
+  background-color: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+th {
+  text-align: left;
+}
+
+thead {
+  th {
+    background-color: #55608f;
+  }
+}
+
+}
+</style>
+</head>

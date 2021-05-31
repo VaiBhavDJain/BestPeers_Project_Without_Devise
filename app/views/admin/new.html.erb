@@ -1,0 +1,42 @@
+<%= link_to 'Back to Home', home_page_path(params[:user_id]), method: :get %>
+
+<ul>
+    <% @admin.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+</ul>
+
+<div>
+  <h1>Create Profile</h1>
+  <%= form_for(@admin,:url => user_admin_index_path,:method => 'post')do |f| %>
+  <table>
+    <tr>
+        <th> Enter First Name </th>
+        <td><%= f.text_field(:first_name)%></td>
+    </tr>
+    <tr>
+        <th> Enter Last Name </th>
+        <td><%= f.text_field(:last_name)%></td>
+    </tr>
+    <tr>
+        <th> Enter DOB </th>
+        <td><%= f.date_field(:dob)%></td>
+    </tr>
+    <tr>
+        <th> Enter Mobile Number </th>
+        <td><%= f.text_field(:mob_no)%></td>
+    </tr>
+    <tr>
+        <th> Enter Address </th>
+        <td><%= f.text_field(:address)%></td>
+    </tr>
+    <tr>
+        <th> Choose Image </th>
+        <td><%= f.file_field :image %></td>
+    </tr>
+  </table>
+  <div>
+    <%= f.submit("Create Admin")%>
+  </div>
+  <%end%>
+</div>

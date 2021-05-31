@@ -1,0 +1,62 @@
+<%= link_to("Goto Home Page of Employee",  user_employee_index_path(params[:user_id],params[:id]), :class => 'back-link')%>
+<%= link_to("Skills Section",  user_employee_skills_path(params[:user_id]), :class => 'back-link')%>
+
+<div>
+  <h1>User</h1>
+  <table class="styled-table">
+    <tr>
+      <th>User Id :- </th>
+      <td><%= @user.id %></td>
+    </tr>
+    <tr>
+      <th>User Name :- </th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th>User Email :- </th>
+      <td><%= @user.email %></td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <h1>Employee Profile</h1>
+  <table class="styled-table">
+    <tr>
+      <th>Employee Id :- </th>
+      <td><%= @user.employee.id %></td><%= link_to("BACK", user_employee_path, :class => 'back-link')%>
+    </tr>
+    <tr>
+      <th>First Name :- </th>
+      <td><%= @user.employee.first_name %></td>
+    </tr>
+    <tr>
+      <th>Last Name :- </th>
+      <td><%= @user.employee.last_name %></td>
+    </tr>
+    <tr>
+    <tr>
+      <th>DOB :- </th>
+      <td><%= @user.employee.dob %></td>
+    </tr>
+    <tr>
+      <th>Mobile Number :- </th>
+      <td><%= @user.employee.mob_no %></td>
+    </tr>
+    <tr>
+      <th>Address :- </th>
+      <td><%= @user.employee.address %></td>
+    </tr>
+
+    <% if @user.employee.image.attached? %>
+    <tr>
+    <th> My Picture :- </th>
+    <td><%= image_tag @user.employee.image %></td>
+    </tr>
+    <% end %>
+    
+  </table>
+</div>
+
+<%=link_to(" Edit",edit_user_employee_path(@user.id),:class=>'action edit')%>
+<%=link_to(" Delete ",delete_user_employee_path(@user.id),:class=>'action delete')%>

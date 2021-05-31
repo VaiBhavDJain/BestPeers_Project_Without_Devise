@@ -1,0 +1,60 @@
+<%= link_to("BACK", user_employee_path, :class => 'back-link')%>
+
+
+<% if @user.employee.image.attached? %>
+<%= image_tag @user.employee.image %>
+<% end %>
+
+<div>
+  <h1>Create Profile</h1>
+  <%= form_for(@user,:url => user_employee_path,:method => 'patch')do |f| %>
+  <table>
+
+
+  <tr>
+  <th> Username </th>
+  <td> <%= f.text_field :name %> </td>
+  
+  <th> Email </th>
+  <td> <%= f.text_field :email, readonly: true, disable: true %> </td>
+  </div>
+  </tr>
+  
+  <%= f.fields_for :employee, @user.employee do |ff| %>
+    <tr>
+        <th> Enter First Name </th>
+        <td><%= ff.text_field(:first_name)%></td>
+    </tr>
+    <tr>
+        <th> Enter Last Name </th>
+        <td><%= ff.text_field(:last_name)%></td>
+    </tr>
+
+    <tr>
+        <th> Enter DOB </th>
+        <td><%= ff.text_field(:dob)%></td>
+    </tr>
+    <tr>
+        <th> Enter Mobile Number </th>
+        <td><%= ff.text_field(:mob_no)%></td>
+    </tr>
+    <tr>
+        <th> Enter Address </th>
+        <td><%= ff.text_field(:address)%></td>
+    </tr>
+
+    <tr>
+    <th> Choose Image </th>
+    <td><%= ff.file_field :image %></td>
+    </tr>
+
+    <% end %>
+
+  </table>
+  <div>
+    <%= f.submit("Update Employee")%>
+  </div>
+  <%end%>
+</div>
+
+

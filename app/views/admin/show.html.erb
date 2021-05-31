@@ -1,0 +1,60 @@
+<%= link_to("Goto Home Page of Admin",  user_admin_index_path(params[:user_id],params[:id]), :class => 'back-link')%>
+<div>
+  <h1>User</h1>
+  <table class="styled-table">
+    <tr>
+      <th>User Id :- </th>
+      <td><%= @user.id %></td>
+    </tr>
+    <tr>
+      <th>User Name :- </th>
+      <td><%= @user.name %></td>
+    </tr>
+    <tr>
+      <th>User Email :- </th>
+      <td><%= @user.email %></td>
+    </tr>
+  </table>
+</div>
+
+<div>
+  <h1>Admin Profile</h1>
+  <table>
+    <tr>
+      <th>Admin Id :- </th>
+      <td><%= @user.admin.id %></td>
+    </tr>
+    <tr>
+      <th>First Name :- </th>
+      <td><%= @user.admin.first_name %></td>
+    </tr>
+    <tr>
+      <th>Last Name :- </th>
+      <td><%= @user.admin.last_name %></td>
+    </tr>
+    <tr>
+    <tr>
+      <th>DOB :- </th>
+      <td><%= @user.admin.dob %></td>
+    </tr>
+    <tr>
+      <th>Mobile Number :- </th>
+      <td><%= @user.admin.mob_no %></td>
+    </tr>
+    <tr>
+      <th>Address :- </th>
+      <td><%= @user.admin.address %></td>
+    </tr>
+
+    <% if @user.admin.image.attached? %>
+    <tr>
+    <th> My Picture :- </th>
+    <td><%= image_tag @user.admin.image %></td>
+    </tr>
+    <% end %>
+
+  </table>
+</div>
+
+<%=link_to(" Edit",edit_user_admin_path(@user.id),:class=>'action edit')%>
+<%=link_to(" Delete ",delete_user_admin_path(@user.id),:class=>'action delete')%>

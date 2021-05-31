@@ -1,0 +1,12 @@
+<%= link_to("BACK", user_employee_path, :class => 'back-link')%>
+<div>
+  <h1>Delete Employee Details</h1>
+  <%= form_for(@employee,:url => user_employee_path(@employee),:method => 'delete')do |f| %>
+  <p>Are you sure you want to delete </p>
+
+
+  <div>
+    <%= f.submit("Delete Employee Details")%>
+  </div>
+  <%end%>
+</div>

@@ -1,0 +1,24 @@
+<br>
+<br>
+
+<header>
+  <% if logged_in? %>
+      <%= "Hello #{current_user.name}!" %>
+      <%= link_to 'Logout', session_path, method: :delete %>
+
+
+      <% if current_user.employee %>
+            <% if current_user.employee.image.attached? %>
+              <%= image_tag current_user.employee.image, style: "width: 70px; border: 4px solid black; display: block" %>
+            <% end %>
+      <% elsif current_user.admin %>
+            <% if current_user.admin.image.attached? %>
+              <%= image_tag current_user.admin.image, style: "width: 70px; border: 4px solid black; display: block" %>
+            <% end %>
+      <% end %>     
+  <% else %>
+    <%= link_to 'Sign Up', new_user_path %>
+    <%= link_to 'Log In', new_session_path %>
+  <% end %>
+</header>
+

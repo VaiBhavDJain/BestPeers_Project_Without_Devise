@@ -1,0 +1,52 @@
+<h1> Admin Dashboard </h1>
+
+<%=link_to(" Show details ",user_admin_path(params[:user_id],@admin_id),:class=>'action show')%>
+<br> <br>
+<%=link_to(" Add new Skills",user_admin_new_skills_path(params[:user_id],@admin_id),:class=>'action new skills')%>
+<br><br>
+<%= button_to 'Chat with buddies', user_chatting_index_path(params[:user_id]), method: :get %>
+
+
+<h1>Employees Details </h1>
+<table style="width:100%">
+  <tr class="header">
+    <th>#</th>
+    <th> Employee ID </th>
+    <th> First Name </th>
+    <th> Last Name </th>
+    <th> User ID </th>
+    <th> User Name </th>
+    <th> User Email </th>
+    <th> DOB</th>
+    <th> Mobile Number </th>
+    <th> Address </th>
+    <th> Skills </th>
+    <br><br>
+  </tr>
+  <% @employee.each do |employee|%>
+  <tr>
+
+       <% if employee.image.attached? %>
+    <td><%= image_tag employee.image , style: "width: 120px; height: 120px; outline-style: dashed; display: block" %></td>
+       <% end %> 
+       
+    <td><%= employee.id %></td> 
+    <td><%= employee.first_name %></td>
+    <td><%= employee.last_name %></td>
+    <td><%= employee.user_id%></td>
+    <td><%= employee.user.name%></td>
+    <td><%= employee.user.email%></td>
+    <td><%= employee.dob%></td>
+    <td><%= employee.mob_no%></td>
+    <td><%= employee.address%></td>
+    
+    <td>
+      <% employee.user.skills.each do |skill|  %> 
+        <%= skill.name %> 
+      <% end %>
+    </td>
+
+    <br>
+  </tr>
+  <%end%>
+</table>

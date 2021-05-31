@@ -1,0 +1,92 @@
+<h1> Welcome to Chatting </h1>
+
+
+<h1>Chat with </h1>
+<table style="width:100%">
+  <tr class="header">
+    <th>#</th>
+    <th> User Type </th>
+    <th> User ID </th>
+    <th> User Name </th>
+    <th> Chat </th>
+    <br><br>
+  </tr>
+
+  <% @user_all.each do |user_all|%>
+  <tr>
+
+    <% if user_all.employee != nil %>
+       <% if user_all.employee.image.attached? %>
+           <td><%= image_tag  user_all.employee.image , style: "width: 120px; height: 120px; outline-style: dashed; display: block" %></td>
+           <td><%= user_all.employee.type %></td>
+        <% end %>
+    <% elsif user_all.admin != nil %>
+        <% if user_all.admin.image.attached? %>
+           <td><%= image_tag  user_all.admin.image , style: "width: 120px; height: 120px; outline-style: dashed; display: block" %></td>
+           <td><%= user_all.admin.type %></td>   
+        <% end %>
+    <% end %>
+    
+    <td><%= user_all.id %></td>
+    <td><%= user_all.name %></td>
+    <td> <%= button_to '==> Chat <==', user_chatting_path(@user.id,user_all.id), method: :get %> </td>
+
+    <br>
+  </tr>
+  <%end%>
+</table>
+
+
+
+
+
+
+<head>
+<style>
+
+* {
+  box-sizing: border-box;
+}
+body {
+  background: steelblue;
+  font-family: "Open Sans", arial;
+}
+table {
+  width: 100%;
+  max-width: 600px;
+  height: 320px;
+  border-collapse: collapse;
+  border: 1px solid #38678f;
+  margin: 50px auto;
+  background: white;
+}
+th {
+  background: steelblue;
+  height: 54px;
+  width: 25%;
+  font-weight: lighter;
+  text-shadow: 0 1px 0 #38678f;
+  color: white;
+  border: 1px solid #38678f;
+  box-shadow: inset 0px 1px 2px #568ebd;
+  transition: all 0.2s;
+}
+tr {
+  border-bottom: 1px solid #cccccc;
+}
+tr:last-child {
+  border-bottom: 0px;
+}
+td {
+  border-right: 1px solid #cccccc;
+  padding: 10px;
+  transition: all 0.2s;
+
+
+h1 {
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+</style>
+</head>
